@@ -1,23 +1,24 @@
 <?php
 include("validatingPage.php");
 if(x_count("exam_timer","id='1' LIMIT 1") > 0){
-	$status = x_getsingle("SELECT status FROM exam_timer WHERE id='1' LIMIT 1","exam_timer WHERE id='1' LIMIT 1","status");
+	
+	$status = x_getsingleupdate("exam_timer","status","id='1'");
 	
 	$statuslist = array("on","off");
+	
 	if(in_array($status,$statuslist)){
 		
 		if($status == "on"){
-			
-			$seconds = $term;
 
 			$_SESSION['SESS_D_EXAM_BUTTON_MA'] = "ok";
-			$_SESSION['SESS_D_EXAM_RAND_TOKEN'] = sha1(md5(time().uniqid().rand(1,54598)));
-			$cthh = $_SESSION['SESS_D_EXAM_RAND_TOKEN'];
-			$exam_token = $cthh;
-			$timet = time() + $seconds;
-			$_SESSION['timeer'] = $timet;
+			$_SESSION['SESS_D_EXAM_RAND_TOKEN'] = sha1(uniqid()).md5(Date("YmdHis"));
 			
-			setcookie("$exam_token" ,"$exam_token" , $timet);
+			$exam_token = $_SESSION['SESS_D_EXAM_RAND_TOKEN'];
+			
+			$total_time = time() + $time_in_seconds;
+			$_SESSION['timeer'] = $total_time;
+			
+			setcookie("$exam_token" ,"$exam_token" , $total_time);
 			
 			$create = x_dbtab("attendance_multiple","
 			username TEXT NOT NULL,
@@ -29,12 +30,15 @@ if(x_count("exam_timer","id='1' LIMIT 1") > 0){
 				echo "Failed to create table";
 				exit();
 			}
+			
 			$use = $_SESSION['SESS_D_USER_EXAM'];
 			$su = $_SESSION['course_session'];
 			
-					// Mode bypass started
+				// Mode bypass started
+				
 				if(x_count("mode_bypass","id='1'") > 0){
-					$getstatus = x_getsingle("SELECT status FROM mode_bypass WHERE id='1' LIMIT 1","mode_bypass WHERE id='1' LIMIT 1","status");  // Getting the bypass mode status
+			
+					$getstatus = x_getsingleupdate("mode_bypass","status","id='1'");  // Getting the bypass mode status
 				}
 				
 				if(isset($getstatus)){
@@ -49,12 +53,12 @@ if(x_count("exam_timer","id='1' LIMIT 1") > 0){
 								echo "<p style='color:red;letter-spacing:2px;margin-top:2%;margin-bottom:2%'>You can't re-login to take this course (<b>$su</b>) again</p>";
 								}else{
 								$failed = "<p style='color:red;letter-spacing:2px;margin-top:2%;margin-bottom:2%'>Failed to insert into attendance table</p>";
-								$success = "<script>window.location='exams?etoken=$cthh';</script>";
+								$success = "<script>window.location='exams?etoken=$exam_token';</script>";
 								x_insert("username,subject,date_time","attendance_multiple","'$use' , '$su' , now()","$success","$failed");		
 								}
 								
 							}else{
-								finish("exams?etoken=$cthh","0");
+								finish("exams?etoken=$exam_token","0");
 							}
 						
 						}else{
@@ -66,8 +70,8 @@ if(x_count("exam_timer","id='1' LIMIT 1") > 0){
 		}else{
 			// off started here
 			$_SESSION['SESS_D_EXAM_RAND_TOKEN'] = sha1(md5(time().uniqid().rand(1,567443)));
-			$cthh = $_SESSION['SESS_D_EXAM_RAND_TOKEN'];
-			finish("exams?etoken=$cthh","0");
+			$exam_token = $_SESSION['SESS_D_EXAM_RAND_TOKEN'];
+			finish("exams?etoken=$exam_token","0");
 		}
 		
 	}else{

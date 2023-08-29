@@ -17,30 +17,24 @@ include("head_b.php");
 <title><?php echo strtoupper($sitename);?> - LOGIN PAGE</title>
 </head>
 <body>
-<div class="header">
-<center>
-<?php include("logobase.php");?>
-</center>
+
+<div class="e-logo mt-1 mb-1">
+	<center>
+		<?php include("logobase.php");?>
+	</center>
 </div>
-
-
-
-
-
-
 
 <div id="cnt" align="center">
 
+	<?php
 
-<?php
+	if((isset($_GET["msg"]) && !empty($_GET["msg"]) && !isset($_GET["token_generated"]))){
 
-if((isset($_GET["msg"]) && !empty($_GET["msg"]) && !isset($_GET["token_generated"]))){
+		echo $_GET["msg"];
 
-echo $_GET["msg"];
+	}else{
 
-}else{
-
-}?>
+	}?>
 
 
 
@@ -86,8 +80,8 @@ echo "<p style='letter-spacing:2px;color:green;margin-top:10pt;'>".$_GET['msg'].
 if(x_count("reg_portal","portal_status='opened' LIMIT 1") > 0){
 	?>
 	<p style="display:block;padding-top:15px;">
-<a href="register" target="_blank" style="letter-spacing:2px;text-decoration:none;color:black">Register an account</a>
-</p>
+		<a href="register" target="_blank" style="letter-spacing:2px;text-decoration:none;color:black">Create an account</a>
+	</p>
 	<?php
 }
 ?>

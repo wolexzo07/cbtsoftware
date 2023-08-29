@@ -15,9 +15,10 @@
 
 <script src="jquery.nicescroll.js" type="text/javascript"></script>
 <script type="text/javascript" language="javascript" src="ckeditor.js"></script>
-<link rel="stylesheet" href="style/" media="all"/>
+
+<!--<link rel="stylesheet" href="style/" media="all"/>--->
 <link rel="stylesheet" href="style/paginate_style.css" media="all"/>
-<link rel="stylesheet" href="style/lat.css" media="all"/>
+<link rel="stylesheet" href="style/index.css" media="all"/>
 
 <link rel="stylesheet" href="css/Toast.min.css"/>
 <link rel="stylesheet" href="css/toastify.min.css"/>

@@ -1,7 +1,9 @@
 <center>
-<p style="font-size:10pt;letter-spacing:2pt;padding:10px;margin-top:10pt;font-weight:bold;">
+<p class="p-1 mt-1 f-bold fs-1" style="letter-spacing:2pt;">
 
-	Copyright &copy; 2015-<?php echo DATE("Y");?> <?php echo $sitename;?>. <?php echo $footer_note;?></p>
+	&copy; 2015-<?php echo DATE("Y");?> <?php echo $sitename;?>. <?php echo $footer_note;?>
+	
+</p>
 </center>
 <style type="text/css">
 a{text-decoration:none;}

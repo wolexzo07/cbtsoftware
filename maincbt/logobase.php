@@ -1,1 +1,1 @@
-<?php echo $sitelogo;?>
+<img src="<?php echo $sitelogo;?>" class="e-logo-img"/>

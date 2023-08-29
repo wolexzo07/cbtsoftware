@@ -1863,6 +1863,7 @@ include("iuofunction.php"); // Include the iuosite functions
 include("mobilefunction.php"); // Mobile Functions
 include("errandpilot_functions.php"); //Errand Pilot functions
 include("testingfunctions.php"); // not stable yet but working
-include("carriagepalsFunctions.php"); // not stable yet but working
+include("carriagepalsFunctions.php"); // carriagepals
+include("cbtfunctions.php"); // cbt functions
 
 ?>

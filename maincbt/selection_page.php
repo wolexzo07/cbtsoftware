@@ -7,24 +7,25 @@ include("siteinfo.php");
 <?php
 include("head_b.php");
 ?>
-<title><?php echo $sitename;?> - WELCOME TO THE EXAMINATION PAGE</title>
+<title><?php echo strtoupper($sitename);?> - PROFILE DETAILS & EXAMINATION INSTRUCTIONS | <?php echo strtoupper(x_session("SESS_D_NAME_EXAM"));?></title>
 </head>
 <body>
-<div id="">
-<div class="header">
-<center>
-<?php include("logobase.php");?>
-</center>
-</div>
+<div id="container">
 
-<div id="bd" >
+		<center>
+			<?php include("logobase.php");?>
+		</center>
+
+<div id="bd">
+
 <table cellspacing="10px" width="100%" cellpadding="10px" border="0px">
 <tr>
 
 <td valign="top" width="65%" >
 <p><?php include("time_display.php")?></p>
+
 <?php
-include("instruction_fetch.php");
+	include("instruction_fetch.php");
 ?>
 
 <center>
@@ -41,35 +42,18 @@ include("instruction_fetch.php");
 <td valign="top" width="35%" >
 
 <fieldset class="fdi">
-<legend>
-<?php
-// manage profile photo
-if(x_count("control_profile","status='1' LIMIT 1") > 0){
-	?>
-	<img id="preimg" src="<?php 
-	$userid = x_clean(x_session("SESS_D_MEMBER_ID_EXAM"));
-	$img = x_getsingleupdate("register","photo","id='$userid'");
-	$placeholderimg = "image/avatar.png";
-	if($img == ""){
-		echo $placeholderimg;
-	}else{
-		if(file_exists($img)){
-			echo $img;
-		}else{
-			echo $placeholderimg;
-		}
-	}
-?>" class="proimger"/>
-	<?php
-}
-?>
-
-</legend>
+<legend></legend>
 
 <p style='padding:5pt;'>
 
 
-Welcome <b> <?php if($_SESSION['SESS_D_USER_EXAM'] != ""){ echo $_SESSION['SESS_D_USER_EXAM'];}else{echo $_SESSION['SESS_D_MAT_NO_EXAM'];} ?> </b> 
+Hi <b> 
+<?php 
+	if(x_session("SESS_D_NAME_EXAM") != ""){
+		$str = x_session("SESS_D_NAME_EXAM");
+		echo x_splname($str);
+	}
+?> </b> 
 &nbsp;| &nbsp;<img src='image/logout.png'  class='logout' style='width:20px' onclick="return(shu())"/>
 </p>
 
@@ -181,7 +165,7 @@ if(x_count("result_button","status='enable' LIMIT 1") > 0){
      	<div id="logi"></div>
 </div>
 
-<div id="footer">
+<div id="footer" class="d-none">
 <?php include("footer.php");?>
 </div>
 </div>

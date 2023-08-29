@@ -4,6 +4,11 @@
 	$owner = x_clean(x_session("SESS_D_USER_EXAM"));
 	$namm = x_clean(x_session("SESS_D_NAME_EXAM"));
 	
+	if(x_count("result_button","status='disable'") > 0){
+			include("no_res.php");
+			exit();
+		}
+	
 	// publishing status
 	
 	$p = x_getsingleupdate("instant_pub","instant_status","id='1'");

@@ -8,7 +8,7 @@
 		if(x_dcount("subject","exams_scores","Score_approval = 'approved' AND script_owner='$user_p' LIMIT 1") > 0){
 			?>
 			<table cellpadding="10px" width="100%" cellspacing="0px" border="1px" style="font-size:11pt;">
-			<tr style="background-color:purple;color:white"><th align="left">SUBJECTS </th><th align="left">SCORES </th></tr>
+			<tr style="background-color:lightgreen;color:purple"><th align="left">SUBJECTS / COURSES </th><th align="left">SCORES </th></tr>
 			<?php
 			foreach(x_distinct("subject AS categories","exams_scores","Score_approval = 'approved' AND script_owner='$user_p'","50","id desc") as $subject){
 				
@@ -26,7 +26,7 @@
 				}
 
 			}
-			echo "<tr style='background-color:purple;color:white'><td><b>AGGREGATE</b></td><td><b>$total_p</b></td></tr>";
+			echo "<tr style='background-color:lightgreen;color:purple'><td><b>AGGREGATE</b></td><td><b>$total_p</b></td></tr>";
 			?>
 			</table>
 			<?php

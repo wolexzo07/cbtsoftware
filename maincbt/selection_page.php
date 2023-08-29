@@ -54,12 +54,31 @@ Hi <b>
 		echo x_splname($str);
 	}
 ?> </b> 
-&nbsp;| &nbsp;<img src='image/logout.png'  class='logout' style='width:20px' onclick="return(shu())"/>
+&nbsp;| &nbsp;<img src='image/logout.png'  class='logout' style='width:20px' onclick="shu()"/>
 </p>
 
 
 <table width="100%" border="0" cellpadding="5px" cellspacing="5px">
-
+<?php
+if(x_count("control_profile","status='1' LIMIT 1") > 0){
+		?>
+			<img style="width:100px;margin-left:40%;margin-top:-100px;;margin-bottom:10px;border-radius:500px;" src="<?php 
+			$userid = x_clean(x_session("SESS_D_MEMBER_ID_EXAM"));
+			$img = x_getsingleupdate("register","photo","id='$userid'");
+			$placeholderimg = "image/avatar.png";
+				if($img == ""){
+					echo $placeholderimg;
+				}else{
+					if(file_exists($img)){
+						echo $img;
+					}else{
+						echo $placeholderimg;
+					}
+				  }
+			?>" />
+			<?php
+ }
+?>
 <tr>
 <td >
 <b>Name</b>
@@ -92,7 +111,7 @@ Dept</b>
 <td>
 
 <?php
-echo $_SESSION['SESS_D_DEPT_EXAM'] ;
+echo x_trunc(x_session("SESS_D_DEPT_EXAM"),0,25) ;
 ?>
 </td>
 </tr>
@@ -135,11 +154,6 @@ echo $_SESSION['HTTP_IUOCBT'];
 
 </table>
 
-
-
-</fieldset>
-
-
 <?php
 
 // Result publishing Button Manager Started
@@ -148,14 +162,14 @@ if(x_count("result_button","status='enable' LIMIT 1") > 0){
 	$user = x_clean($_SESSION['SESS_D_USER_EXAM']);
 	if(x_count("exams_scores","script_owner='$user' LIMIT 1") > 0){
 		?>
-		<center><img src="img/chk.png" class="recheck" onclick="parent.location='recheck'" title="Please click here to check result(s) of courses taken" style="width:100%;margin-top:5px;"/></center>
+		<center><img src="img/chk.png" class="recheck" onclick="parent.location='recheck'" title="Please click here to check result(s) of courses taken" style="width:100%;margin-top:60px;"/></center>
 		<?php
 	}
 }
 // Result publishing Button Manager Ended
 ?>
 
-
+</fieldset>
 
 </td>
 </tr>

@@ -1,6 +1,5 @@
 function logout_computers(){
 	var result = "#logi";
-	//$(result).html("<center><img src='img/ajax-loader.gif' style='width:20px;'/></center>");
 	$.ajax({
 			url:"log_c",
 			method:"GET",
@@ -15,7 +14,7 @@ function logc(){
     setInterval("logout_computers()" , 200);
 }
 
-logc();
+//logc();
 
 /********
 function logout_computers(){

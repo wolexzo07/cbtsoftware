@@ -66,33 +66,34 @@ include("head_b.php");
 </tr>
 <tr>
 
-<td><center><input type="image" src="image/l.png" class="lbt" style="width:305px;"/></center>
-<p>
-<?php
-$token = sha1(md5("wolexzo07isabigboystudentthatisgoingtoovertakeeverywherethispresentyear2015"));
-if((isset($_GET["msg"]) && !empty($_GET["msg"])) && (isset($_GET["token_generated"]) && !empty($_GET["token_generated"]) && ($_GET["token_generated"]==$token)) ){
-
-echo "<p style='letter-spacing:2px;color:green;margin-top:10pt;'>".$_GET['msg']."</p>";
-
-}else{?>
-
-<?php
-if(x_count("reg_portal","portal_status='opened' LIMIT 1") > 0){
-	?>
-	<p style="display:block;padding-top:15px;">
-		<a href="register" target="_blank" style="letter-spacing:2px;text-decoration:none;color:black">Create an account</a>
-	</p>
+	<td>
+	<center><input type="image" src="image/l.png" class="lbt" style="width:305px;"/></center>
+	<p>
 	<?php
-}
-?>
+	$token = sha1(md5("wolexzo07isabigboystudentthatisgoingtoovertakeeverywherethispresentyear2015"));
+	if((isset($_GET["msg"]) && !empty($_GET["msg"])) && (isset($_GET["token_generated"]) && !empty($_GET["token_generated"]) && ($_GET["token_generated"]==$token)) ){
+
+	echo "<p style='letter-spacing:2px;color:green;margin-top:10pt;'>".$_GET['msg']."</p>";
+
+	}else{?>
+
+	<?php
+	if(x_count("reg_portal","portal_status='opened' LIMIT 1") > 0){
+		?>
+		<p style="display:block;padding-top:15px;">
+			<a href="register" target="_blank" style="letter-spacing:2px;text-decoration:none;color:black">Create an account</a>
+		</p>
+		<?php
+	}
+	?>
 
 
-<?php
-}
-?>
-</p>
-</td>
-<td></td>
+	<?php
+	}
+	?>
+	</p>
+	</td>
+	<td></td>
 </tr>
 </table>
 </form>

@@ -13,6 +13,7 @@
 		</head>
 	<body>
 		<script type="text/javascript" src="js/controls.js"></script>
+		<script type="text/javascript" src="js/timer.js"></script>
 
 		<div class="container pt-5">
 			<div class="header d-none">
@@ -140,7 +141,7 @@
 			<script src="shutdown.js"></script>
 			<script src="logit.js"></script>
 			<script src="adax.js"></script>
-			
+						
     </body>
 
 </html>

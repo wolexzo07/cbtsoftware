@@ -1,6 +1,5 @@
 function logout_id(){
 	var result = "#log";
-	//$(result).html("<center><img src='img/ajax-loader.gif' style='width:20px;'/></center>");
 	$.ajax({
 			url:"logit",
 			method:"GET",

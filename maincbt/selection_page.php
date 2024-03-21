@@ -54,7 +54,7 @@ Hi <b>
 		echo x_splname($str);
 	}
 ?> </b> 
-&nbsp;| &nbsp;<img src='image/logout.png'  class='logout' style='width:20px' onclick="shu()"/>
+&nbsp;| &nbsp;<img src='image/logout.png'  class='logout' style='width:20px' onclick="shutdown()"/>
 </p>
 
 
@@ -183,6 +183,18 @@ if(x_count("result_button","status='enable' LIMIT 1") > 0){
 <?php include("footer.php");?>
 </div>
 </div>
-</body>
 
+	<script>
+		function shutdown(){
+			var answer = window.confirm("Are you sure you want to logout?");
+			if(answer){
+				window.location = "logout";
+				return true;
+			}else{
+				return false;
+			}
+		}
+	</script>
+
+</body>
 </html>

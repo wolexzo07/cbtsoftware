@@ -17,7 +17,7 @@ if(($current > 180) && ($current <= 200) ){
 	if($current < 180){
 		
 		?>
-			<style type="text/css">
+	<style type="text/css">
 
 		.timeclass{
 			color:red;
@@ -51,5 +51,10 @@ if($current <= 0){
 				unset($_SESSION['EXAM_RESULT_STOPPED']);
 				}
 	}else{
-echo secondsToTime($current);}}
+		
+		echo secondsToTime($current);
+
+	}
+
+}
 ?>

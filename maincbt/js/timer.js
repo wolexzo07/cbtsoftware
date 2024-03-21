@@ -1,5 +1,3 @@
-/****
-
 function timer_count(){
 	var result = "#timeclasse";
 	$.ajax({
@@ -12,4 +10,8 @@ function timer_count(){
 		});
 }
 
-****/
+function current_timer(){
+	setInterval("timer_count()" , 200);
+}
+
+current_timer();

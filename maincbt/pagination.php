@@ -9,6 +9,7 @@ if(x_count("cross_platform_mode","id='1'") > 0){
  // Randomization of questions for users
  
  $order_option = x_getsingleupdate("multiple_choice","status","user ='$login' OR user='$user'");
+ 
  $order_desc_asc = x_getsingleupdate("multiple_choice","arrangement","user ='$login' OR user='$user'");
  
  $chty = $order_option; $arrt = $order_desc_asc;

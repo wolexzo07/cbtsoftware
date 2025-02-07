@@ -13,12 +13,7 @@ require "mailer/PHPMaile6x/src/SMTP.php";
 // Agent Library ended
 
 function x_print($val){
-	//if(isset($val) && ($val != "")){
-	if(isset($val) && ($val != "")){
-		echo $val;
-	}else{
-		echo "Missing result!";
-	}
+	echo $val;
 }
 
 function x_cstring(){
@@ -34,7 +29,7 @@ $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 // More headers
-$headers .= 'From: <support@vatexzduo.com>' . "\r\n";
+$headers .= 'From: <support@yungopay.com>' . "\r\n";
 
 
 	if(mail($to,$subject,$message,$headers)){
@@ -464,16 +459,16 @@ function x_updated($table,$where,$fieldval,$success,$error){
 	}
 	if($read = x_connect($update)){
 			if($success == "0"){
-			$msg = "<p class='hubmsg'>Data updated successfully!</p>";
+			$msg = "Data updated successfully!";
 			}else{
-			$msg = "<p class='hubmsg'>$success</p>";
+			$msg = "$success";
 			}
 			echo $msg;
 	}else{
 			if($error == "0"){
-      $msg = "<p class='hubmsg'>Failed to update!</p>";
+      $msg = "Failed to update!";
 			}else{
-			$msg = "<p class='hubmsg'>$error</p>";
+			$msg = "$error";
 			}
 			echo $msg;
 	}
@@ -789,6 +784,8 @@ function xcload($val){
 	}else{
 		}}
 }
+
+
 #xexit($val,$loc) will check for file existence at specified location
 function xexit($val,$loc){
 	if(($val == "") || (($loc == ""))){
@@ -805,6 +802,8 @@ function xexit($val,$loc){
 	}
 	
 }
+
+
 #xmload($val,$loc,$file_exists) will move uploaded file to specified location
 function xmload($val,$loc,$file_exists){
 	if(($val == "") || (($loc == ""))){
@@ -849,7 +848,7 @@ function xcsize($val,$maxsize){
 		$size = $_FILES[$val]['size'];
 		if($size > $calc){
 			$er = x_getsize($calc);
-		x_print("File upload can not exceed the <b>$er</b> specified for $val");
+			x_print("File upload can not exceed the <b>$er</b> specified for $val");
 			exit();
 		}else{		
 		}
@@ -1771,32 +1770,7 @@ curlPost('google.com', [
     'password' => '12345',
 ]);***/
 
-// personal telegram bot details
-	//$id = 1087418627;
-	//$token = "5581262856:AAH-g_y7R01kfXjokBmCxZ0wkhmlBoy4WpE";
-	//$alert_status = 1;
-function x_send_telegram($id , $token ,$mess ,$alert_status){
-    if(x_justvalidate($id) && x_justvalidate($token)){		
-       	$msg = urlencode($mess);
-		$url = "https://api.telegram.org/bot$token/sendmessage?chat_id=$id&text=".$msg;
-		$result = x_curlPost($url, $data=NULL, $headers = NULL);
-		$decode = json_decode($result,true);
-		$finalize = $decode["ok"];
-		$opt = array(0,1);
-		
-		if($finalize == "true"){
-			if(in_array($alert_status,$opt)){
-				if($alert_status == "1"){
-					return "Telegram message sent!";
-				}
-				return true;
-			}else{
-				return "Invalid option";
-			}
-		}
-		
-	}
-}
+
 
 // send data as json
 
@@ -1856,14 +1830,21 @@ function x_send_json($postData, $url, $token) {
 		}
 	}
 
-
-include("payment_functions.php");// Paystack payment functions
-include("domingos_sp_functions.php");// functions from domingos social
-include("iuofunction.php"); // Include the iuosite functions
-include("mobilefunction.php"); // Mobile Functions
-include("errandpilot_functions.php"); //Errand Pilot functions
-include("testingfunctions.php"); // not stable yet but working
-include("carriagepalsFunctions.php"); // carriagepals
-include("cbtfunctions.php"); // cbt functions
-
+	include("telegramApi.php"); // Telegram Api
+	include("fileHandling_Functions.php"); // File uploader functions
+	include("payment_functions.php");// Paystack payment functions
+	include("domingos_sp_functions.php");// functions from domingos social
+	include("iuofunction.php"); // Include the iuosite functions
+	include("errandpilot_functions.php"); //Errand Pilot functions
+	include("testingfunctions.php"); // not stable yet but working
+	include("carriagepalsFunctions.php"); // Carriagepals functions
+	include("schms_functions.php"); // School management system functions
+	include("billpaymentFunctions.php"); // Bills payment
+	include("flutterwaveApi.php"); // Flutterwave Api
+	include("new_db_functions.php"); // db functions
+	include("blochqAPI.php"); // Blochq.io API
+	include("ApironeApi.php"); // apirone.com API
+	include("mobilefunction.php"); // Mobile Functions
+	include("cbtfunctions.php"); // Mobile Functions
+	
 ?>

@@ -1,4 +1,5 @@
 <?php
+
 function x_countupdate($table,$where,$limit){
 	
 	if($where == "0"){

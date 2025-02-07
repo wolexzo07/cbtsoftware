@@ -1,7 +1,9 @@
 <div id="q">
-<font style="color:gray;font-size:11pt;letter-spacing:2px;"><?php echo "Category &raquo; ". "<i>".$cat."</i>";?>
-<?php echo " &nbsp;&nbsp;Question Type &raquo; ". "<i>".$qtype."</i>";?>
-</font>
+<p style="margin-bottom:10pt;">
+	<font style="color:gray;font-size:11pt;letter-spacing:2px;display:;"><?php echo "Course &raquo; ". "<i>".$cat."</i>";?>
+	<?php echo "&nbsp;&nbsp;|&nbsp;&nbsp;Type &raquo; ". "<i>".$qtype."</i>";?>&nbsp;&nbsp;|&nbsp;&nbsp;Total Question &raquo; <?php echo $nr; ?>
+	</font>
+</p>
 
 <?php
 	$allowed = array("objective","subjective");

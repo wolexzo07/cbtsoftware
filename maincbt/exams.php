@@ -32,13 +32,11 @@
 		Hi, <b> 
 		<?php 
 			if($_SESSION['SESS_D_USER_EXAM'] != ""){
-				//echo $_SESSION['SESS_D_USER_EXAM']. "&nbsp;&nbsp;(".$_SESSION['SESS_D_NAME_EXAM'].")";
-				
-				echo x_trunc($_SESSION['SESS_D_NAME_EXAM'],0,30);
-				
-				}else{
+					echo x_trunc($_SESSION['SESS_D_NAME_EXAM'],0,30);
+				}
+				else{
 					echo $_SESSION['SESS_D_MAT_NO_EXAM'];
-					} 
+				} 
 		?> </b> 
 		&nbsp;| &nbsp;<img src='image/logout.png' onmouseover="tooltip.pop(this, '#demo3_tip')" class='logout' style='width:20px' onclick="shu()"/>&nbsp;&nbsp;&nbsp;
 		</div>

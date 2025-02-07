@@ -75,9 +75,9 @@ if ($lastPage != "1"){
 	
         $paginationDisplay .=  '&nbsp;  <a id="next" href="' . $_SERVER['PHP_SELF'] . '?pn=' . $nextPage . '"></a><img src="image/n1.png" onclick="return forward()" style="width:60px;height:40px" class="n1"/><br/> ';
     } 
-	$paginationDisplay .= 'Page <strong>' . $pn . '</strong> of ' . $lastPage. '&nbsp;  &nbsp;  &nbsp; ';
+	$paginationDisplay .= '<p style="margin-top:10pt;">Page <strong>' . $pn . '</strong> of ' . $lastPage. '&nbsp;  &nbsp;  &nbsp; ';
     
-	 $paginationDisplay .= '<span class="paginationNumbers">' . $centerPages . '</span>';
+	 $paginationDisplay .= '<span  class="paginationNumbers">' . $centerPages . '</span></p>';
     
 }
 
@@ -103,6 +103,7 @@ foreach(x_select("0","questions","categories='$courses' AND approval_status='app
 	$anss = $row['answer'];
 
 	include("top.php");
+	
     $outputList .= include("queajax.php");
 
 	
@@ -111,14 +112,18 @@ foreach(x_select("0","questions","categories='$courses' AND approval_status='app
 
 // close while loop
 ?>
-	<div id="search" style="margin-top:10pt;"><?php include("validateajax.php"); ?></div>
+	<div id="search" style="margin-top:10pt;"><?php if($qtype == "objective"){include("validateajax.php");} ?></div>
+	
 	<script src="ajax.js"></script>
 
    <div style="-webkit-box-shadow:0px 0px 0px 0px black;-o-box-shadow:0px 0px 0px 0px black;-ms-box-shadow:0px 0px 0px 0px black;border-radius:10px;-webkit-border-radius:10px;-moz-border-radius:10px;padding:10px ;margin-left:7px;margin-bottom:7px;margin-top:1px;width:500px">
-     <h3>Total Questions: <?php echo $nr; ?></h3>
+    
+	<!--<h3>Total Questions: <?php //echo $nr; ?></h3>--->
  
       <div style=""><?php "$outputList"; ?></div>
+	  
 	 <div style=""><?php echo $paginationDisplay; ?></div>
+	 
   </div> 
 
 <?php

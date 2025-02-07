@@ -1,6 +1,9 @@
 <?php
 
-// Validating Bitcoin address
+	include("shinnex.php");
+
+	// Validating Bitcoin address
+
 	function x_validatebtc($value){
 		$regex = "/^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/";
 		$regex1 = "/^\b((bc|tb)(0([ac-hj-np-z02-9]{39}|[ac-hj-np-z02-9]{59})|1[ac-hj-np-z02-9]{8,87})|([13]|[mn2])[a-km-zA-HJ-NP-Z1-9]{25,39})\b$/"; // Bech32 | legacy | Testnet
@@ -19,13 +22,17 @@
 // Just Balance alone
 
  function x_getbalance($column,$userid){
-	 return x_getsingle("SELECT $column FROM createusers WHERE id='$userid' LIMIT 1","createusers WHERE id='$userid' LIMIT 1",$column);
+	 
+	 return x_getsingleupdate("createusers","$column","id='$userid'");
+	 
  }
  
  // Get Current Rates
  
   function x_getrates($column){
-	 return x_getsingle("SELECT $column FROM rates WHERE id='1'","rates WHERE id='1'",$column);
+	  
+	 return x_getsingleupdate("rates","$column","id='1'");
+	 
  }
  
  // Converting usd to btc 
@@ -40,8 +47,14 @@
 	 $btc = @trim($btc);
 	 $json =  xget("https://blockchain.info/ticker");
 	 $decode = json_decode($json,true);
-	 $onebtc = $decode["USD"]["last"];
-	 $btc = $onebtc * $btc;
+	 
+	 if(isset($decode["USD"]["last"])){
+		 $onebtc = $decode["USD"]["last"];
+		 $btc = $onebtc * $btc; 
+	 }else{
+		 $btc = 0; 
+	 }
+	 
 	 return number_format($btc,2);
 	 
  }
@@ -62,10 +75,20 @@
  function x_btcprice($currency,$format){
 	$json =  xget("https://blockchain.info/ticker");
 	$decode = json_decode($json,true);
-	if($format == 1){
+	
+	if(isset($decode[$currency]["last"])){
+		
+		if($format == 1){
+			
 		return strtoupper($currency)." ". number_format($decode[$currency]["last"],2);
-	}
+		
+		}
 		return number_format($decode[$currency]["last"],2);
+		
+	}else{
+		return strtoupper($currency)." ". number_format(0,2);
+	}
+	
  }
 
 ?>
